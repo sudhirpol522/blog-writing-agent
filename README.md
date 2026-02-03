@@ -1,10 +1,10 @@
-﻿# Blog Writing Agent
+# Blog Writing Agent
 
 AI-powered blog writing agent built with LangGraph, OpenAI, and Streamlit. Generates high-quality technical blog posts with automated research, structured planning, and image generation.
 
-<p align="center">
-  <img src="assets/demo.gif" alt="Demo" width="800"/>
-</p>
+## Demo
+
+![Demo Video](assets/demo.mp4)
 
 ## Features
 
