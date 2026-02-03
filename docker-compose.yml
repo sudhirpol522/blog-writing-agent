@@ -1,0 +1,31 @@
+version: '3.8'
+
+services:
+  blog-writer:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: blog-writing-agent
+    ports:
+      - "8501:8501"
+    environment:
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - TAVILY_API_KEY=${TAVILY_API_KEY}
+      - GOOGLE_API_KEY=${GOOGLE_API_KEY}
+      - MODEL_NAME=${MODEL_NAME:-gpt-4o-mini}
+      - MODEL_TEMPERATURE=${MODEL_TEMPERATURE:-0.7}
+    volumes:
+      # Mount source code for development
+      - ./src:/app/src
+      # Persist generated content
+      - ./images:/app/images
+      - ./outputs:/app/outputs
+      # Mount .env file
+      - ./.env:/app/.env
+    restart: unless-stopped
+    networks:
+      - blog-writer-network
+
+networks:
+  blog-writer-network:
+    driver: bridge
